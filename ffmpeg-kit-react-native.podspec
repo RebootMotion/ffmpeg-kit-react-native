@@ -14,8 +14,7 @@ Pod::Spec.new do |s|
   s.requires_arc      = true
   s.static_framework  = true
 
-  s.source       = { :git => "https://github.com/RebootMotion/ffmpeg-kit-fork.git" }
-
+  s.source = { :git => "https://github.com/RebootMotion/ffmpeg-kit-react-native.git" }
   s.default_subspec   = 'https'
 
   s.dependency "React-Core"
