@@ -1,33 +1,40 @@
-import {NativeEventEmitter, NativeModules} from 'react-native';
+import { NativeEventEmitter, NativeModules } from 'react-native';
 
-const {FFmpegKitReactNativeModule} = NativeModules;
+const { FFmpegKitReactNativeModule } = NativeModules;
 
-const ffmpegSessionCompleteCallbackMap = new Map()
-const ffprobeSessionCompleteCallbackMap = new Map()
-const mediaInformationSessionCompleteCallbackMap = new Map()
-const logCallbackMap = new Map()
-const statisticsCallbackMap = new Map()
-const logRedirectionStrategyMap = new Map()
+const ffmpegSessionCompleteCallbackMap = new Map();
+const ffprobeSessionCompleteCallbackMap = new Map();
+const mediaInformationSessionCompleteCallbackMap = new Map();
+const logCallbackMap = new Map();
+const statisticsCallbackMap = new Map();
+const logRedirectionStrategyMap = new Map();
 
-const eventLogCallbackEvent = "FFmpegKitLogCallbackEvent";
-const eventStatisticsCallbackEvent = "FFmpegKitStatisticsCallbackEvent";
-const eventCompleteCallbackEvent = "FFmpegKitCompleteCallbackEvent";
+const eventLogCallbackEvent = 'FFmpegKitLogCallbackEvent';
+const eventStatisticsCallbackEvent = 'FFmpegKitStatisticsCallbackEvent';
+const eventCompleteCallbackEvent = 'FFmpegKitCompleteCallbackEvent';
 
 export const LogRedirectionStrategy = {
   ALWAYS_PRINT_LOGS: 0,
   PRINT_LOGS_WHEN_NO_CALLBACKS_DEFINED: 1,
   PRINT_LOGS_WHEN_GLOBAL_CALLBACK_NOT_DEFINED: 2,
   PRINT_LOGS_WHEN_SESSION_CALLBACK_NOT_DEFINED: 3,
-  NEVER_PRINT_LOGS: 4
-}
+  NEVER_PRINT_LOGS: 4,
+};
 
 export const SessionState = {
-  CREATED: 0, RUNNING: 1, FAILED: 2, COMPLETED: 3
-}
+  CREATED: 0,
+  RUNNING: 1,
+  FAILED: 2,
+  COMPLETED: 3,
+};
 
 export const Signal = {
-  SIGINT: 2, SIGQUIT: 3, SIGPIPE: 13, SIGTERM: 15, SIGXCPU: 24
-}
+  SIGINT: 2,
+  SIGQUIT: 3,
+  SIGPIPE: 13,
+  SIGTERM: 15,
+  SIGXCPU: 24,
+};
 
 class FFmpegKitReactNativeEventEmitter extends NativeEventEmitter {
   constructor() {
@@ -59,46 +66,40 @@ class FFmpegKitReactNativeEventEmitter extends NativeEventEmitter {
  * <p>Common interface for all <code>FFmpegKit</code> sessions.
  */
 export class Session {
-
   /**
    * Returns the session specific log callback.
    *
    * @return session specific log callback
    */
-  getLogCallback() {
-  }
+  getLogCallback() {}
 
   /**
    * Returns the session identifier.
    *
    * @return session identifier
    */
-  getSessionId() {
-  }
+  getSessionId() {}
 
   /**
    * Returns session create time.
    *
    * @return session create time
    */
-  getCreateTime() {
-  }
+  getCreateTime() {}
 
   /**
    * Returns session start time.
    *
    * @return session start time
    */
-  getStartTime() {
-  }
+  getStartTime() {}
 
   /**
    * Returns session end time.
    *
    * @return session end time
    */
-  getEndTime() {
-  }
+  getEndTime() {}
 
   /**
    * Returns the time taken to execute this session.
@@ -106,24 +107,21 @@ export class Session {
    * @return time taken to execute this session in milliseconds or zero (0) if the session is
    * not over yet
    */
-  getDuration() {
-  }
+  getDuration() {}
 
   /**
    * Returns command arguments as an array.
    *
    * @return command arguments as an array
    */
-  getArguments() {
-  }
+  getArguments() {}
 
   /**
    * Returns command arguments as a concatenated string.
    *
    * @return command arguments as a concatenated string
    */
-  getCommand() {
-  }
+  getCommand() {}
 
   /**
    * Returns all log entries generated for this session. If there are asynchronous
@@ -132,8 +130,7 @@ export class Session {
    * @param waitTimeout wait timeout for asynchronous messages in milliseconds
    * @return list of log entries generated for this session
    */
-  getAllLogs(waitTimeout) {
-  }
+  getAllLogs(waitTimeout) {}
 
   /**
    * Returns all log entries delivered for this session. Note that if there are asynchronous log
@@ -142,8 +139,7 @@ export class Session {
    *
    * @return list of log entries received for this session
    */
-  getLogs() {
-  }
+  getLogs() {}
 
   /**
    * Returns all log entries generated for this session as a concatenated string. If there are
@@ -153,8 +149,7 @@ export class Session {
    * @param waitTimeout wait timeout for asynchronous messages in milliseconds
    * @return all log entries generated for this session as a concatenated string
    */
-  getAllLogsAsString(waitTimeout) {
-  }
+  getAllLogsAsString(waitTimeout) {}
 
   /**
    * Returns all log entries delivered for this session as a concatenated string. Note that if
@@ -163,24 +158,21 @@ export class Session {
    *
    * @return list of log entries received for this session
    */
-  getLogsAsString() {
-  }
+  getLogsAsString() {}
 
   /**
    * Returns the log output generated while running the session.
    *
    * @return log output generated
    */
-  getOutput() {
-  }
+  getOutput() {}
 
   /**
    * Returns the state of the session.
    *
    * @return state of the session
    */
-  getState() {
-  }
+  getState() {}
 
   /**
    * Returns the return code for this session. Note that return code is only set for sessions
@@ -190,8 +182,7 @@ export class Session {
    * @return the return code for this session if the session is COMPLETED, undefined if session is
    * not started, still running or failed
    */
-  getReturnCode() {
-  }
+  getReturnCode() {}
 
   /**
    * Returns the stack trace of the exception received while executing this session.
@@ -202,16 +193,14 @@ export class Session {
    * @return stack trace of the exception received while executing this session, undefined if session
    * is not started, still running or completed
    */
-  getFailStackTrace() {
-  }
+  getFailStackTrace() {}
 
   /**
    * Returns session specific log redirection strategy.
    *
    * @return session specific log redirection strategy
    */
-  getLogRedirectionStrategy() {
-  }
+  getLogRedirectionStrategy() {}
 
   /**
    * Returns whether there are still asynchronous messages being transmitted for this
@@ -220,39 +209,33 @@ export class Session {
    * @return true if there are still asynchronous messages being transmitted, false
    * otherwise
    */
-  thereAreAsynchronousMessagesInTransmit() {
-  }
+  thereAreAsynchronousMessagesInTransmit() {}
 
   /**
    * Returns whether it is an <code>FFmpeg</code> session or not.
    *
    * @return true if it is an <code>FFmpeg</code> session, false otherwise
    */
-  isFFmpeg() {
-  }
+  isFFmpeg() {}
 
   /**
    * Returns whether it is an <code>FFprobe</code> session or not.
    *
    * @return true if it is an <code>FFprobe</code> session, false otherwise
    */
-  isFFprobe() {
-  }
+  isFFprobe() {}
 
   /**
    * Returns whether it is a <code>MediaInformation</code> session or not.
    *
    * @return true if it is a <code>MediaInformation</code> session, false otherwise
    */
-  isMediaInformation() {
-  }
+  isMediaInformation() {}
 
   /**
    * Cancels running the session.
    */
-  cancel() {
-  }
-
+  cancel() {}
 }
 
 /**
@@ -260,7 +243,6 @@ export class Session {
  * <code>FFprobe</code> and <code>MediaInformation</code> sessions.
  */
 export class AbstractSession extends Session {
-
   /**
    * Defines how long default "getAll" methods wait, in milliseconds.
    */
@@ -310,7 +292,8 @@ export class AbstractSession extends Session {
       logRedirectionStrategy = FFmpegKitConfig.getLogRedirectionStrategy();
     }
 
-    let nativeSession = await FFmpegKitReactNativeModule.ffmpegSession(argumentsArray);
+    let nativeSession =
+      await FFmpegKitReactNativeModule.ffmpegSession(argumentsArray);
     let session = new FFmpegSession();
 
     session.#sessionId = nativeSession.sessionId;
@@ -320,7 +303,10 @@ export class AbstractSession extends Session {
     session.#argumentsArray = argumentsArray;
     session.#logRedirectionStrategy = logRedirectionStrategy;
 
-    FFmpegKitFactory.setLogRedirectionStrategy(session.#sessionId, logRedirectionStrategy);
+    FFmpegKitFactory.setLogRedirectionStrategy(
+      session.#sessionId,
+      logRedirectionStrategy
+    );
 
     return session;
   }
@@ -338,8 +324,11 @@ export class AbstractSession extends Session {
     session.#createTime = FFmpegKitFactory.validDate(sessionMap.createTime);
     session.#startTime = FFmpegKitFactory.validDate(sessionMap.startTime);
     session.#command = sessionMap.command;
-    session.#argumentsArray = FFmpegKitConfig.parseArguments(sessionMap.command);
-    session.#logRedirectionStrategy = FFmpegKitFactory.getLogRedirectionStrategy(session.#sessionId);
+    session.#argumentsArray = FFmpegKitConfig.parseArguments(
+      sessionMap.command
+    );
+    session.#logRedirectionStrategy =
+      FFmpegKitFactory.getLogRedirectionStrategy(session.#sessionId);
 
     return session;
   }
@@ -358,7 +347,8 @@ export class AbstractSession extends Session {
       logRedirectionStrategy = FFmpegKitConfig.getLogRedirectionStrategy();
     }
 
-    let nativeSession = await FFmpegKitReactNativeModule.ffprobeSession(argumentsArray);
+    let nativeSession =
+      await FFmpegKitReactNativeModule.ffprobeSession(argumentsArray);
     let session = new FFprobeSession();
 
     session.#sessionId = nativeSession.sessionId;
@@ -368,7 +358,10 @@ export class AbstractSession extends Session {
     session.#argumentsArray = argumentsArray;
     session.#logRedirectionStrategy = logRedirectionStrategy;
 
-    FFmpegKitFactory.setLogRedirectionStrategy(session.#sessionId, logRedirectionStrategy);
+    FFmpegKitFactory.setLogRedirectionStrategy(
+      session.#sessionId,
+      logRedirectionStrategy
+    );
 
     return session;
   }
@@ -386,8 +379,11 @@ export class AbstractSession extends Session {
     session.#createTime = FFmpegKitFactory.validDate(sessionMap.createTime);
     session.#startTime = FFmpegKitFactory.validDate(sessionMap.startTime);
     session.#command = sessionMap.command;
-    session.#argumentsArray = FFmpegKitConfig.parseArguments(sessionMap.command);
-    session.#logRedirectionStrategy = FFmpegKitFactory.getLogRedirectionStrategy(session.#sessionId);
+    session.#argumentsArray = FFmpegKitConfig.parseArguments(
+      sessionMap.command
+    );
+    session.#logRedirectionStrategy =
+      FFmpegKitFactory.getLogRedirectionStrategy(session.#sessionId);
 
     return session;
   }
@@ -401,7 +397,8 @@ export class AbstractSession extends Session {
   static async createMediaInformationSession(argumentsArray) {
     await FFmpegKitConfig.init();
 
-    let nativeSession = await FFmpegKitReactNativeModule.mediaInformationSession(argumentsArray);
+    let nativeSession =
+      await FFmpegKitReactNativeModule.mediaInformationSession(argumentsArray);
     let session = new MediaInformationSession();
 
     session.#sessionId = nativeSession.sessionId;
@@ -411,7 +408,10 @@ export class AbstractSession extends Session {
     session.#argumentsArray = argumentsArray;
     session.#logRedirectionStrategy = LogRedirectionStrategy.NEVER_PRINT_LOGS;
 
-    FFmpegKitFactory.setLogRedirectionStrategy(session.#sessionId, LogRedirectionStrategy.NEVER_PRINT_LOGS);
+    FFmpegKitFactory.setLogRedirectionStrategy(
+      session.#sessionId,
+      LogRedirectionStrategy.NEVER_PRINT_LOGS
+    );
 
     return session;
   }
@@ -429,11 +429,18 @@ export class AbstractSession extends Session {
     session.#createTime = FFmpegKitFactory.validDate(sessionMap.createTime);
     session.#startTime = FFmpegKitFactory.validDate(sessionMap.startTime);
     session.#command = sessionMap.command;
-    session.#argumentsArray = FFmpegKitConfig.parseArguments(sessionMap.command);
+    session.#argumentsArray = FFmpegKitConfig.parseArguments(
+      sessionMap.command
+    );
     session.#logRedirectionStrategy = LogRedirectionStrategy.NEVER_PRINT_LOGS;
 
-    if (sessionMap.mediaInformation !== undefined && sessionMap.mediaInformation !== null) {
-      session.setMediaInformation(new MediaInformation(sessionMap.mediaInformation));
+    if (
+      sessionMap.mediaInformation !== undefined &&
+      sessionMap.mediaInformation !== null
+    ) {
+      session.setMediaInformation(
+        new MediaInformation(sessionMap.mediaInformation)
+      );
     }
 
     return session;
@@ -445,7 +452,7 @@ export class AbstractSession extends Session {
    * @return session specific log callback
    */
   getLogCallback() {
-    return FFmpegKitFactory.getLogCallback(this.getSessionId())
+    return FFmpegKitFactory.getLogCallback(this.getSessionId());
   }
 
   /**
@@ -481,7 +488,9 @@ export class AbstractSession extends Session {
    * @return session end time
    */
   async getEndTime() {
-    const endTime = FFmpegKitReactNativeModule.abstractSessionGetEndTime(this.getSessionId());
+    const endTime = FFmpegKitReactNativeModule.abstractSessionGetEndTime(
+      this.getSessionId()
+    );
     return FFmpegKitFactory.validDate(endTime);
   }
 
@@ -492,7 +501,9 @@ export class AbstractSession extends Session {
    * not over yet
    */
   getDuration() {
-    return FFmpegKitReactNativeModule.abstractSessionGetDuration(this.getSessionId());
+    return FFmpegKitReactNativeModule.abstractSessionGetDuration(
+      this.getSessionId()
+    );
   }
 
   /**
@@ -521,7 +532,10 @@ export class AbstractSession extends Session {
    * @return list of log entries generated for this session
    */
   async getAllLogs(waitTimeout) {
-    const allLogs = await FFmpegKitReactNativeModule.abstractSessionGetAllLogs(this.getSessionId(), FFmpegKitFactory.optionalNumericParameter(waitTimeout));
+    const allLogs = await FFmpegKitReactNativeModule.abstractSessionGetAllLogs(
+      this.getSessionId(),
+      FFmpegKitFactory.optionalNumericParameter(waitTimeout)
+    );
     return allLogs.map(FFmpegKitFactory.mapToLog);
   }
 
@@ -533,7 +547,9 @@ export class AbstractSession extends Session {
    * @return list of log entries received for this session
    */
   async getLogs() {
-    const logs = await FFmpegKitReactNativeModule.abstractSessionGetLogs(this.getSessionId());
+    const logs = await FFmpegKitReactNativeModule.abstractSessionGetLogs(
+      this.getSessionId()
+    );
     return logs.map(FFmpegKitFactory.mapToLog);
   }
 
@@ -546,7 +562,10 @@ export class AbstractSession extends Session {
    * @return all log entries generated for this session as a concatenated string
    */
   async getAllLogsAsString(waitTimeout) {
-    return FFmpegKitReactNativeModule.abstractSessionGetAllLogsAsString(this.getSessionId(), FFmpegKitFactory.optionalNumericParameter(waitTimeout));
+    return FFmpegKitReactNativeModule.abstractSessionGetAllLogsAsString(
+      this.getSessionId(),
+      FFmpegKitFactory.optionalNumericParameter(waitTimeout)
+    );
   }
 
   /**
@@ -561,7 +580,7 @@ export class AbstractSession extends Session {
 
     let concatenatedString = '';
 
-    logs.forEach(log => concatenatedString += log.getMessage());
+    logs.forEach((log) => (concatenatedString += log.getMessage()));
 
     return concatenatedString;
   }
@@ -581,7 +600,9 @@ export class AbstractSession extends Session {
    * @return state of the session
    */
   async getState() {
-    return FFmpegKitReactNativeModule.abstractSessionGetState(this.getSessionId());
+    return FFmpegKitReactNativeModule.abstractSessionGetState(
+      this.getSessionId()
+    );
   }
 
   /**
@@ -593,7 +614,10 @@ export class AbstractSession extends Session {
    * not started, still running or failed
    */
   async getReturnCode() {
-    const returnCodeValue = await FFmpegKitReactNativeModule.abstractSessionGetReturnCode(this.getSessionId());
+    const returnCodeValue =
+      await FFmpegKitReactNativeModule.abstractSessionGetReturnCode(
+        this.getSessionId()
+      );
     if (returnCodeValue === undefined) {
       return undefined;
     } else {
@@ -611,7 +635,9 @@ export class AbstractSession extends Session {
    * is not started, still running or completed
    */
   getFailStackTrace() {
-    return FFmpegKitReactNativeModule.abstractSessionGetFailStackTrace(this.getSessionId());
+    return FFmpegKitReactNativeModule.abstractSessionGetFailStackTrace(
+      this.getSessionId()
+    );
   }
 
   /**
@@ -631,7 +657,9 @@ export class AbstractSession extends Session {
    * otherwise
    */
   thereAreAsynchronousMessagesInTransmit() {
-    return FFmpegKitReactNativeModule.abstractSessionThereAreAsynchronousMessagesInTransmit(this.getSessionId());
+    return FFmpegKitReactNativeModule.abstractSessionThereAreAsynchronousMessagesInTransmit(
+      this.getSessionId()
+    );
   }
 
   /**
@@ -672,14 +700,12 @@ export class AbstractSession extends Session {
       return FFmpegKitReactNativeModule.cancelSession(sessionId);
     }
   }
-
 }
 
 /**
  * Detects the running architecture.
  */
 export class ArchDetect {
-
   /**
    * Returns architecture name loaded.
    *
@@ -690,14 +716,12 @@ export class ArchDetect {
 
     return FFmpegKitReactNativeModule.getArch();
   }
-
 }
 
 /**
  * <p>Main class to run <code>FFmpeg</code> commands.
  */
 export class FFmpegKit {
-
   /**
    * <p>Synchronously executes FFmpeg command provided. Space character is used to split the command
    * into arguments. You can use single or double quote characters to specify arguments inside your command.
@@ -706,7 +730,9 @@ export class FFmpegKit {
    * @return FFmpeg session created for this execution
    */
   static async execute(command) {
-    return FFmpegKit.executeWithArguments(FFmpegKitConfig.parseArguments(command));
+    return FFmpegKit.executeWithArguments(
+      FFmpegKitConfig.parseArguments(command)
+    );
   }
 
   /**
@@ -716,7 +742,12 @@ export class FFmpegKit {
    * @return FFmpeg session created for this execution
    */
   static async executeWithArguments(commandArguments) {
-    let session = await FFmpegSession.create(commandArguments, undefined, undefined, undefined);
+    let session = await FFmpegSession.create(
+      commandArguments,
+      undefined,
+      undefined,
+      undefined
+    );
 
     await FFmpegKitConfig.ffmpegExecute(session);
 
@@ -736,8 +767,18 @@ export class FFmpegKit {
    * @param statisticsCallback callback that will receive statistics
    * @return FFmpeg session created for this execution
    */
-  static async executeAsync(command, completeCallback, logCallback, statisticsCallback) {
-    return FFmpegKit.executeWithArgumentsAsync(FFmpegKitConfig.parseArguments(command), completeCallback, logCallback, statisticsCallback);
+  static async executeAsync(
+    command,
+    completeCallback,
+    logCallback,
+    statisticsCallback
+  ) {
+    return FFmpegKit.executeWithArgumentsAsync(
+      FFmpegKitConfig.parseArguments(command),
+      completeCallback,
+      logCallback,
+      statisticsCallback
+    );
   }
 
   /**
@@ -752,8 +793,18 @@ export class FFmpegKit {
    * @param statisticsCallback callback that will receive statistics
    * @return FFmpeg session created for this execution
    */
-  static async executeWithArgumentsAsync(commandArguments, completeCallback, logCallback, statisticsCallback) {
-    let session = await FFmpegSession.create(commandArguments, completeCallback, logCallback, statisticsCallback);
+  static async executeWithArgumentsAsync(
+    commandArguments,
+    completeCallback,
+    logCallback,
+    statisticsCallback
+  ) {
+    let session = await FFmpegSession.create(
+      commandArguments,
+      completeCallback,
+      logCallback,
+      statisticsCallback
+    );
 
     await FFmpegKitConfig.asyncFFmpegExecute(session);
 
@@ -788,15 +839,14 @@ export class FFmpegKit {
     const sessionArray = await FFmpegKitReactNativeModule.getFFmpegSessions();
     return sessionArray.map(FFmpegKitFactory.mapToSession);
   }
-
 }
 
 /**
  * <p>Configuration class of <code>FFmpegKit</code> library.
  */
 export class FFmpegKitConfig {
-
-  static #globalLogRedirectionStrategy = LogRedirectionStrategy.PRINT_LOGS_WHEN_NO_CALLBACKS_DEFINED;
+  static #globalLogRedirectionStrategy =
+    LogRedirectionStrategy.PRINT_LOGS_WHEN_NO_CALLBACKS_DEFINED;
 
   /**
    * Initializes the library asynchronously.
@@ -869,7 +919,10 @@ export class FFmpegKitConfig {
   static async setFontDirectory(fontDirectoryPath, fontNameMapping) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.setFontDirectory(fontDirectoryPath, fontNameMapping);
+    return FFmpegKitReactNativeModule.setFontDirectory(
+      fontDirectoryPath,
+      fontNameMapping
+    );
   }
 
   /**
@@ -886,7 +939,10 @@ export class FFmpegKitConfig {
   static async setFontDirectoryList(fontDirectoryList, fontNameMapping) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.setFontDirectoryList(fontDirectoryList, fontNameMapping);
+    return FFmpegKitReactNativeModule.setFontDirectoryList(
+      fontDirectoryList,
+      fontNameMapping
+    );
   }
 
   /**
@@ -965,7 +1021,10 @@ export class FFmpegKitConfig {
   static async setEnvironmentVariable(variableName, variableValue) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.setEnvironmentVariable(variableName, variableValue);
+    return FFmpegKitReactNativeModule.setEnvironmentVariable(
+      variableName,
+      variableValue
+    );
   }
 
   /**
@@ -988,7 +1047,9 @@ export class FFmpegKitConfig {
   static async ffmpegExecute(ffmpegSession) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.ffmpegSessionExecute(ffmpegSession.getSessionId());
+    return FFmpegKitReactNativeModule.ffmpegSessionExecute(
+      ffmpegSession.getSessionId()
+    );
   }
 
   /**
@@ -999,7 +1060,9 @@ export class FFmpegKitConfig {
   static async ffprobeExecute(ffprobeSession) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.ffprobeSessionExecute(ffprobeSession.getSessionId());
+    return FFmpegKitReactNativeModule.ffprobeSessionExecute(
+      ffprobeSession.getSessionId()
+    );
   }
 
   /**
@@ -1008,10 +1071,16 @@ export class FFmpegKitConfig {
    * @param mediaInformationSession media information session which includes command options/arguments
    * @param waitTimeout             max time to wait until media information is transmitted
    */
-  static async getMediaInformationExecute(mediaInformationSession, waitTimeout) {
+  static async getMediaInformationExecute(
+    mediaInformationSession,
+    waitTimeout
+  ) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.mediaInformationSessionExecute(mediaInformationSession.getSessionId(), FFmpegKitFactory.optionalNumericParameter(waitTimeout));
+    return FFmpegKitReactNativeModule.mediaInformationSessionExecute(
+      mediaInformationSession.getSessionId(),
+      FFmpegKitFactory.optionalNumericParameter(waitTimeout)
+    );
   }
 
   /**
@@ -1025,7 +1094,9 @@ export class FFmpegKitConfig {
   static async asyncFFmpegExecute(ffmpegSession) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.asyncFFmpegSessionExecute(ffmpegSession.getSessionId());
+    return FFmpegKitReactNativeModule.asyncFFmpegSessionExecute(
+      ffmpegSession.getSessionId()
+    );
   }
 
   /**
@@ -1039,7 +1110,9 @@ export class FFmpegKitConfig {
   static async asyncFFprobeExecute(ffprobeSession) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.asyncFFprobeSessionExecute(ffprobeSession.getSessionId());
+    return FFmpegKitReactNativeModule.asyncFFprobeSessionExecute(
+      ffprobeSession.getSessionId()
+    );
   }
 
   /**
@@ -1051,10 +1124,16 @@ export class FFmpegKitConfig {
    * @param mediaInformationSession media information session which includes command options/arguments
    * @param waitTimeout             max time to wait until media information is transmitted
    */
-  static async asyncGetMediaInformationExecute(mediaInformationSession, waitTimeout) {
+  static async asyncGetMediaInformationExecute(
+    mediaInformationSession,
+    waitTimeout
+  ) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.asyncMediaInformationSessionExecute(mediaInformationSession.getSessionId(), FFmpegKitFactory.optionalNumericParameter(waitTimeout));
+    return FFmpegKitReactNativeModule.asyncMediaInformationSessionExecute(
+      mediaInformationSession.getSessionId(),
+      FFmpegKitFactory.optionalNumericParameter(waitTimeout)
+    );
   }
 
   /**
@@ -1083,7 +1162,9 @@ export class FFmpegKitConfig {
    * @param ffmpegSessionCompleteCallback complete callback or undefined to disable a previously defined callback
    */
   static enableFFmpegSessionCompleteCallback(ffmpegSessionCompleteCallback) {
-    FFmpegKitFactory.setGlobalFFmpegSessionCompleteCallback(ffmpegSessionCompleteCallback);
+    FFmpegKitFactory.setGlobalFFmpegSessionCompleteCallback(
+      ffmpegSessionCompleteCallback
+    );
   }
 
   /**
@@ -1101,7 +1182,9 @@ export class FFmpegKitConfig {
    * @param ffprobeSessionCompleteCallback complete callback or undefined to disable a previously defined callback
    */
   static enableFFprobeSessionCompleteCallback(ffprobeSessionCompleteCallback) {
-    FFmpegKitFactory.setGlobalFFprobeSessionCompleteCallback(ffprobeSessionCompleteCallback);
+    FFmpegKitFactory.setGlobalFFprobeSessionCompleteCallback(
+      ffprobeSessionCompleteCallback
+    );
   }
 
   /**
@@ -1119,8 +1202,12 @@ export class FFmpegKitConfig {
    * @param mediaInformationSessionCompleteCallback complete callback or undefined to disable a previously defined
    * callback
    */
-  static enableMediaInformationSessionCompleteCallback(mediaInformationSessionCompleteCallback) {
-    FFmpegKitFactory.setGlobalMediaInformationSessionCompleteCallback(mediaInformationSessionCompleteCallback);
+  static enableMediaInformationSessionCompleteCallback(
+    mediaInformationSessionCompleteCallback
+  ) {
+    FFmpegKitFactory.setGlobalMediaInformationSessionCompleteCallback(
+      mediaInformationSessionCompleteCallback
+    );
   }
 
   /**
@@ -1166,7 +1253,7 @@ export class FFmpegKitConfig {
   static async getSafParameterForRead(uriString) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.getSafParameter(uriString, "r");
+    return FFmpegKitReactNativeModule.getSafParameter(uriString, 'r');
   }
 
   /**
@@ -1182,7 +1269,7 @@ export class FFmpegKitConfig {
   static async getSafParameterForWrite(uriString) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.getSafParameter(uriString, "w");
+    return FFmpegKitReactNativeModule.getSafParameter(uriString, 'w');
   }
 
   /**
@@ -1261,7 +1348,8 @@ export class FFmpegKitConfig {
   static async getLastCompletedSession() {
     await FFmpegKitConfig.init();
 
-    const sessionMap = await FFmpegKitReactNativeModule.getLastCompletedSession();
+    const sessionMap =
+      await FFmpegKitReactNativeModule.getLastCompletedSession();
     return FFmpegKitFactory.mapToSession(sessionMap);
   }
 
@@ -1319,7 +1407,8 @@ export class FFmpegKitConfig {
   static async getMediaInformationSessions() {
     await FFmpegKitConfig.init();
 
-    const sessionArray = await FFmpegKitReactNativeModule.getMediaInformationSessions();
+    const sessionArray =
+      await FFmpegKitReactNativeModule.getMediaInformationSessions();
     return sessionArray.map(FFmpegKitFactory.mapToSession);
   }
 
@@ -1332,7 +1421,8 @@ export class FFmpegKitConfig {
   static async getSessionsByState(state) {
     await FFmpegKitConfig.init();
 
-    const sessionArray = await FFmpegKitReactNativeModule.getSessionsByState(state);
+    const sessionArray =
+      await FFmpegKitReactNativeModule.getSessionsByState(state);
     return sessionArray.map(FFmpegKitFactory.mapToSession);
   }
 
@@ -1365,7 +1455,8 @@ export class FFmpegKitConfig {
   static async messagesInTransmit(sessionId) {
     await FFmpegKitConfig.init();
 
-    const sessionMap = await FFmpegKitReactNativeModule.messagesInTransmit(sessionId);
+    const sessionMap =
+      await FFmpegKitReactNativeModule.messagesInTransmit(sessionId);
     return FFmpegKitFactory.mapToSession(sessionMap);
   }
 
@@ -1378,15 +1469,15 @@ export class FFmpegKitConfig {
   static sessionStateToString(state) {
     switch (state) {
       case SessionState.CREATED:
-        return "CREATED";
+        return 'CREATED';
       case SessionState.RUNNING:
-        return "RUNNING";
+        return 'RUNNING';
       case SessionState.FAILED:
-        return "FAILED";
+        return 'FAILED';
       case SessionState.COMPLETED:
-        return "COMPLETED";
+        return 'COMPLETED';
       default:
-        return "";
+        return '';
     }
   }
 
@@ -1399,7 +1490,7 @@ export class FFmpegKitConfig {
    */
   static parseArguments(command) {
     let argumentList = [];
-    let currentArgument = "";
+    let currentArgument = '';
 
     let singleQuoteStarted = 0;
     let doubleQuoteStarted = 0;
@@ -1418,9 +1509,12 @@ export class FFmpegKitConfig {
           currentArgument += currentChar;
         } else if (currentArgument.length > 0) {
           argumentList.push(currentArgument);
-          currentArgument = "";
+          currentArgument = '';
         }
-      } else if (currentChar === '\'' && (previousChar == null || previousChar !== '\\')) {
+      } else if (
+        currentChar === "'" &&
+        (previousChar == null || previousChar !== '\\')
+      ) {
         if (singleQuoteStarted === 1) {
           singleQuoteStarted = 0;
         } else if (doubleQuoteStarted === 1) {
@@ -1428,7 +1522,10 @@ export class FFmpegKitConfig {
         } else {
           singleQuoteStarted = 1;
         }
-      } else if (currentChar === '\"' && (previousChar == null || previousChar !== '\\')) {
+      } else if (
+        currentChar === '\"' &&
+        (previousChar == null || previousChar !== '\\')
+      ) {
         if (doubleQuoteStarted === 1) {
           doubleQuoteStarted = 0;
         } else if (singleQuoteStarted === 1) {
@@ -1546,7 +1643,12 @@ export class FFmpegKitConfig {
   static async selectDocumentForRead(type, extraTypes) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.selectDocument(false, undefined, type, extraTypes);
+    return FFmpegKitReactNativeModule.selectDocument(
+      false,
+      undefined,
+      type,
+      extraTypes
+    );
   }
 
   /**
@@ -1564,13 +1666,16 @@ export class FFmpegKitConfig {
   static async selectDocumentForWrite(title, type, extraTypes) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.selectDocument(true, title, type, extraTypes);
+    return FFmpegKitReactNativeModule.selectDocument(
+      true,
+      title,
+      type,
+      extraTypes
+    );
   }
-
 }
 
 class FFmpegKitFactory {
-
   static #ffmpegSessionCompleteCallback = undefined;
   static #ffprobeSessionCompleteCallback = undefined;
   static #mediaInformationSessionCompleteCallback = undefined;
@@ -1580,7 +1685,16 @@ class FFmpegKitFactory {
 
   static mapToStatistics(statisticsMap) {
     if (statisticsMap !== undefined) {
-      return new Statistics(statisticsMap.sessionId, statisticsMap.videoFrameNumber, statisticsMap.videoFps, statisticsMap.videoQuality, statisticsMap.size, statisticsMap.time, statisticsMap.bitrate, statisticsMap.speed);
+      return new Statistics(
+        statisticsMap.sessionId,
+        statisticsMap.videoFrameNumber,
+        statisticsMap.videoFps,
+        statisticsMap.videoQuality,
+        statisticsMap.size,
+        statisticsMap.time,
+        statisticsMap.bitrate,
+        statisticsMap.speed
+      );
     } else {
       return undefined;
     }
@@ -1588,7 +1702,7 @@ class FFmpegKitFactory {
 
   static mapToLog(logMap) {
     if (logMap !== undefined) {
-      return new Log(logMap.sessionId, logMap.level, logMap.message)
+      return new Log(logMap.sessionId, logMap.level, logMap.message);
     } else {
       return undefined;
     }
@@ -1600,7 +1714,9 @@ class FFmpegKitFactory {
         case 2:
           return AbstractSession.createFFprobeSessionFromMap(sessionMap);
         case 3:
-          return AbstractSession.createMediaInformationSessionFromMap(sessionMap);
+          return AbstractSession.createMediaInformationSessionFromMap(
+            sessionMap
+          );
         case 1:
         default:
           return AbstractSession.createFFmpegSessionFromMap(sessionMap);
@@ -1611,7 +1727,7 @@ class FFmpegKitFactory {
   }
 
   static getVersion() {
-    return "6.0.2";
+    return '6.0.2';
   }
 
   static getLogRedirectionStrategy(sessionId) {
@@ -1698,9 +1814,15 @@ class FFmpegKitFactory {
     return mediaInformationSessionCompleteCallbackMap.get(sessionId);
   }
 
-  static setMediaInformationSessionCompleteCallback(sessionId, completeCallback) {
+  static setMediaInformationSessionCompleteCallback(
+    sessionId,
+    completeCallback
+  ) {
     if (completeCallback !== undefined) {
-      mediaInformationSessionCompleteCallbackMap.set(sessionId, completeCallback);
+      mediaInformationSessionCompleteCallbackMap.set(
+        sessionId,
+        completeCallback
+      );
     }
   }
 
@@ -1731,7 +1853,6 @@ class FFmpegKitFactory {
       return new Date(time);
     }
   }
-
 }
 
 class FFmpegKitInitializer {
@@ -1739,23 +1860,29 @@ class FFmpegKitInitializer {
   static #eventEmitter = new FFmpegKitReactNativeEventEmitter();
 
   static processLogCallbackEvent(event) {
-    const log = FFmpegKitFactory.mapToLog(event)
+    const log = FFmpegKitFactory.mapToLog(event);
     const sessionId = event.sessionId;
     const level = event.level;
     const text = event.message;
     const activeLogLevel = FFmpegKitConfig.getLogLevel();
     let globalCallbackDefined = false;
     let sessionCallbackDefined = false;
-    let activeLogRedirectionStrategy = FFmpegKitConfig.getLogRedirectionStrategy();
+    let activeLogRedirectionStrategy =
+      FFmpegKitConfig.getLogRedirectionStrategy();
 
     // AV_LOG_STDERR logs are always redirected
-    if ((activeLogLevel === Level.AV_LOG_QUIET && level !== Level.AV_LOG_STDERR) || level > activeLogLevel) {
+    if (
+      (activeLogLevel === Level.AV_LOG_QUIET &&
+        level !== Level.AV_LOG_STDERR) ||
+      level > activeLogLevel
+    ) {
       // LOG NEITHER PRINTED NOR FORWARDED
       return;
     }
 
     if (FFmpegKitFactory.getLogRedirectionStrategy(sessionId) !== undefined) {
-      activeLogRedirectionStrategy = FFmpegKitFactory.getLogRedirectionStrategy(sessionId);
+      activeLogRedirectionStrategy =
+        FFmpegKitFactory.getLogRedirectionStrategy(sessionId);
     }
     let activeLogCallback = FFmpegKitFactory.getLogCallback(sessionId);
     if (activeLogCallback !== undefined) {
@@ -1765,7 +1892,7 @@ class FFmpegKitInitializer {
         // NOTIFY SESSION CALLBACK DEFINED
         activeLogCallback(log);
       } catch (err) {
-        console.log("Exception thrown inside session log callback.", err.stack);
+        console.log('Exception thrown inside session log callback.', err.stack);
       }
     }
 
@@ -1777,7 +1904,7 @@ class FFmpegKitInitializer {
         // NOTIFY GLOBAL CALLBACK DEFINED
         globalLogCallbackFunction(log);
       } catch (err) {
-        console.log("Exception thrown inside global log callback.", err.stack);
+        console.log('Exception thrown inside global log callback.', err.stack);
       }
     }
 
@@ -1786,34 +1913,39 @@ class FFmpegKitInitializer {
       case LogRedirectionStrategy.NEVER_PRINT_LOGS: {
         return;
       }
-      case LogRedirectionStrategy.PRINT_LOGS_WHEN_GLOBAL_CALLBACK_NOT_DEFINED: {
-        if (globalCallbackDefined) {
-          return;
+      case LogRedirectionStrategy.PRINT_LOGS_WHEN_GLOBAL_CALLBACK_NOT_DEFINED:
+        {
+          if (globalCallbackDefined) {
+            return;
+          }
         }
-      }
         break;
-      case LogRedirectionStrategy.PRINT_LOGS_WHEN_SESSION_CALLBACK_NOT_DEFINED: {
-        if (sessionCallbackDefined) {
-          return;
+      case LogRedirectionStrategy.PRINT_LOGS_WHEN_SESSION_CALLBACK_NOT_DEFINED:
+        {
+          if (sessionCallbackDefined) {
+            return;
+          }
         }
-      }
         break;
-      case LogRedirectionStrategy.PRINT_LOGS_WHEN_NO_CALLBACKS_DEFINED: {
-        if (globalCallbackDefined || sessionCallbackDefined) {
-          return;
+      case LogRedirectionStrategy.PRINT_LOGS_WHEN_NO_CALLBACKS_DEFINED:
+        {
+          if (globalCallbackDefined || sessionCallbackDefined) {
+            return;
+          }
         }
-      }
         break;
-      case LogRedirectionStrategy.ALWAYS_PRINT_LOGS: {
-      }
+      case LogRedirectionStrategy.ALWAYS_PRINT_LOGS:
+        {
+        }
         break;
     }
 
     // PRINT LOGS
     switch (level) {
-      case Level.AV_LOG_QUIET: {
-        // PRINT NO OUTPUT
-      }
+      case Level.AV_LOG_QUIET:
+        {
+          // PRINT NO OUTPUT
+        }
         break;
       default: {
         console.log(text);
@@ -1825,23 +1957,31 @@ class FFmpegKitInitializer {
     let statistics = FFmpegKitFactory.mapToStatistics(event);
     let sessionId = event.sessionId;
 
-    let activeStatisticsCallback = FFmpegKitFactory.getStatisticsCallback(sessionId);
+    let activeStatisticsCallback =
+      FFmpegKitFactory.getStatisticsCallback(sessionId);
     if (activeStatisticsCallback !== undefined) {
       try {
         // NOTIFY SESSION CALLBACK DEFINED
         activeStatisticsCallback(statistics);
       } catch (err) {
-        console.log("Exception thrown inside session statistics callback.", err.stack);
+        console.log(
+          'Exception thrown inside session statistics callback.',
+          err.stack
+        );
       }
     }
 
-    let globalStatisticsCallbackFunction = FFmpegKitFactory.getGlobalStatisticsCallback();
+    let globalStatisticsCallbackFunction =
+      FFmpegKitFactory.getGlobalStatisticsCallback();
     if (globalStatisticsCallbackFunction !== undefined) {
       try {
         // NOTIFY GLOBAL CALLBACK DEFINED
         globalStatisticsCallbackFunction(statistics);
       } catch (err) {
-        console.log("Exception thrown inside global statistics callback.", err.stack);
+        console.log(
+          'Exception thrown inside global statistics callback.',
+          err.stack
+        );
       }
     }
   }
@@ -1850,45 +1990,60 @@ class FFmpegKitInitializer {
     if (event !== undefined) {
       let sessionId = event.sessionId;
 
-      FFmpegKitConfig.getSession(sessionId).then(session => {
+      FFmpegKitConfig.getSession(sessionId).then((session) => {
         if (session !== undefined) {
           if (session.getCompleteCallback() !== undefined) {
             try {
               // NOTIFY SESSION CALLBACK DEFINED
               session.getCompleteCallback()(session);
             } catch (err) {
-              console.log("Exception thrown inside session complete callback.", err.stack);
+              console.log(
+                'Exception thrown inside session complete callback.',
+                err.stack
+              );
             }
           }
 
           if (session.isFFmpeg()) {
-            let globalFFmpegSessionCompleteCallback = FFmpegKitFactory.getGlobalFFmpegSessionCompleteCallback();
+            let globalFFmpegSessionCompleteCallback =
+              FFmpegKitFactory.getGlobalFFmpegSessionCompleteCallback();
             if (globalFFmpegSessionCompleteCallback !== undefined) {
               try {
                 // NOTIFY GLOBAL CALLBACK DEFINED
                 globalFFmpegSessionCompleteCallback(session);
               } catch (err) {
-                console.log("Exception thrown inside global complete callback.", err.stack);
+                console.log(
+                  'Exception thrown inside global complete callback.',
+                  err.stack
+                );
               }
             }
           } else if (session.isFFprobe()) {
-            let globalFFprobeSessionCompleteCallback = FFmpegKitFactory.getGlobalFFprobeSessionCompleteCallback();
+            let globalFFprobeSessionCompleteCallback =
+              FFmpegKitFactory.getGlobalFFprobeSessionCompleteCallback();
             if (globalFFprobeSessionCompleteCallback !== undefined) {
               try {
                 // NOTIFY GLOBAL CALLBACK DEFINED
                 globalFFprobeSessionCompleteCallback(session);
               } catch (err) {
-                console.log("Exception thrown inside global complete callback.", err.stack);
+                console.log(
+                  'Exception thrown inside global complete callback.',
+                  err.stack
+                );
               }
             }
           } else if (session.isMediaInformation()) {
-            let globalMediaInformationSessionCompleteCallback = FFmpegKitFactory.getGlobalMediaInformationSessionCompleteCallback();
+            let globalMediaInformationSessionCompleteCallback =
+              FFmpegKitFactory.getGlobalMediaInformationSessionCompleteCallback();
             if (globalMediaInformationSessionCompleteCallback !== undefined) {
               try {
                 // NOTIFY GLOBAL CALLBACK DEFINED
                 globalMediaInformationSessionCompleteCallback(session);
               } catch (err) {
-                console.log("Exception thrown inside global complete callback.", err.stack);
+                console.log(
+                  'Exception thrown inside global complete callback.',
+                  err.stack
+                );
               }
             }
           }
@@ -1904,30 +2059,41 @@ class FFmpegKitInitializer {
       this.#initialized = true;
     }
 
-    console.log("Loading ffmpeg-kit-react-native.");
+    console.log('Loading ffmpeg-kit-react-native.');
 
-    this.#eventEmitter.addListener(eventLogCallbackEvent, FFmpegKitInitializer.processLogCallbackEvent);
-    this.#eventEmitter.addListener(eventStatisticsCallbackEvent, FFmpegKitInitializer.processStatisticsCallbackEvent);
-    this.#eventEmitter.addListener(eventCompleteCallbackEvent, FFmpegKitInitializer.processCompleteCallbackEvent);
+    this.#eventEmitter.addListener(
+      eventLogCallbackEvent,
+      FFmpegKitInitializer.processLogCallbackEvent
+    );
+    this.#eventEmitter.addListener(
+      eventStatisticsCallbackEvent,
+      FFmpegKitInitializer.processStatisticsCallbackEvent
+    );
+    this.#eventEmitter.addListener(
+      eventCompleteCallbackEvent,
+      FFmpegKitInitializer.processCompleteCallbackEvent
+    );
 
-    FFmpegKitFactory.setLogLevel(await FFmpegKitReactNativeModule.getLogLevel());
+    FFmpegKitFactory.setLogLevel(
+      await FFmpegKitReactNativeModule.getLogLevel()
+    );
     const version = FFmpegKitFactory.getVersion();
     const platform = await FFmpegKitConfig.getPlatform();
     const arch = await ArchDetect.getArch();
     const packageName = await Packages.getPackageName();
     await FFmpegKitConfig.enableRedirection();
-    const isLTSPostfix = (await FFmpegKitConfig.isLTSBuild()) ? "-lts" : "";
+    const isLTSPostfix = (await FFmpegKitConfig.isLTSBuild()) ? '-lts' : '';
 
-    console.log(`Loaded ffmpeg-kit-react-native-${platform}-${packageName}-${arch}-${version}${isLTSPostfix}.`);
+    console.log(
+      `Loaded ffmpeg-kit-react-native-${platform}-${packageName}-${arch}-${version}${isLTSPostfix}.`
+    );
   }
-
 }
 
 /**
  * <p>An FFmpeg session.
  */
 export class FFmpegSession extends AbstractSession {
-
   /**
    * Creates a new FFmpeg session.
    *
@@ -1938,11 +2104,23 @@ export class FFmpegSession extends AbstractSession {
    * @param logRedirectionStrategy defines how logs will be redirected
    * @returns FFmpeg session created
    */
-  static async create(argumentsArray, completeCallback, logCallback, statisticsCallback, logRedirectionStrategy) {
-    const session = await AbstractSession.createFFmpegSession(argumentsArray, logRedirectionStrategy);
+  static async create(
+    argumentsArray,
+    completeCallback,
+    logCallback,
+    statisticsCallback,
+    logRedirectionStrategy
+  ) {
+    const session = await AbstractSession.createFFmpegSession(
+      argumentsArray,
+      logRedirectionStrategy
+    );
     const sessionId = session.getSessionId();
 
-    FFmpegKitFactory.setFFmpegSessionCompleteCallback(sessionId, completeCallback);
+    FFmpegKitFactory.setFFmpegSessionCompleteCallback(
+      sessionId,
+      completeCallback
+    );
     FFmpegKitFactory.setLogCallback(sessionId, logCallback);
     FFmpegKitFactory.setStatisticsCallback(sessionId, statisticsCallback);
 
@@ -1964,7 +2142,9 @@ export class FFmpegSession extends AbstractSession {
    * @return session specific complete callback
    */
   getCompleteCallback() {
-    return FFmpegKitFactory.getFFmpegSessionCompleteCallback(this.getSessionId());
+    return FFmpegKitFactory.getFFmpegSessionCompleteCallback(
+      this.getSessionId()
+    );
   }
 
   /**
@@ -1977,7 +2157,11 @@ export class FFmpegSession extends AbstractSession {
   async getAllStatistics(waitTimeout) {
     await FFmpegKitConfig.init();
 
-    const allStatistics = await FFmpegKitReactNativeModule.ffmpegSessionGetAllStatistics(this.getSessionId(), FFmpegKitFactory.optionalNumericParameter(waitTimeout));
+    const allStatistics =
+      await FFmpegKitReactNativeModule.ffmpegSessionGetAllStatistics(
+        this.getSessionId(),
+        FFmpegKitFactory.optionalNumericParameter(waitTimeout)
+      );
     return allStatistics.map(FFmpegKitFactory.mapToStatistics);
   }
 
@@ -1991,7 +2175,10 @@ export class FFmpegSession extends AbstractSession {
   async getStatistics() {
     await FFmpegKitConfig.init();
 
-    const statistics = await FFmpegKitReactNativeModule.ffmpegSessionGetStatistics(this.getSessionId());
+    const statistics =
+      await FFmpegKitReactNativeModule.ffmpegSessionGetStatistics(
+        this.getSessionId()
+      );
     return statistics.map(FFmpegKitFactory.mapToStatistics);
   }
 
@@ -2022,14 +2209,12 @@ export class FFmpegSession extends AbstractSession {
   isMediaInformation() {
     return false;
   }
-
 }
 
 /**
  * <p>Main class to run <code>FFprobe</code> commands.
  */
 export class FFprobeKit {
-
   /**
    * <p>Synchronously executes FFprobe command provided. Space character is used to split the command
    * into arguments. You can use single or double quote characters to specify arguments inside your command.
@@ -2038,7 +2223,9 @@ export class FFprobeKit {
    * @return FFprobe session created for this execution
    */
   static async execute(command) {
-    return FFprobeKit.executeWithArguments(FFmpegKitConfig.parseArguments(command));
+    return FFprobeKit.executeWithArguments(
+      FFmpegKitConfig.parseArguments(command)
+    );
   }
 
   /**
@@ -2048,7 +2235,11 @@ export class FFprobeKit {
    * @return FFprobe session created for this execution
    */
   static async executeWithArguments(commandArguments) {
-    let session = await FFprobeSession.create(commandArguments, undefined, undefined);
+    let session = await FFprobeSession.create(
+      commandArguments,
+      undefined,
+      undefined
+    );
 
     await FFmpegKitConfig.ffprobeExecute(session);
 
@@ -2068,7 +2259,11 @@ export class FFprobeKit {
    * @return FFprobe session created for this execution
    */
   static async executeAsync(command, completeCallback, logCallback) {
-    return FFprobeKit.executeWithArgumentsAsync(FFmpegKitConfig.parseArguments(command), completeCallback, logCallback);
+    return FFprobeKit.executeWithArgumentsAsync(
+      FFmpegKitConfig.parseArguments(command),
+      completeCallback,
+      logCallback
+    );
   }
 
   /**
@@ -2082,8 +2277,16 @@ export class FFprobeKit {
    * @param logCallback callback that will receive logs
    * @return FFprobe session created for this execution
    */
-  static async executeWithArgumentsAsync(commandArguments, completeCallback, logCallback) {
-    let session = await FFprobeSession.create(commandArguments, completeCallback, logCallback);
+  static async executeWithArgumentsAsync(
+    commandArguments,
+    completeCallback,
+    logCallback
+  ) {
+    let session = await FFprobeSession.create(
+      commandArguments,
+      completeCallback,
+      logCallback
+    );
 
     await FFmpegKitConfig.asyncFFprobeExecute(session);
 
@@ -2098,8 +2301,22 @@ export class FFprobeKit {
    * @return media information session created for this execution
    */
   static async getMediaInformation(path, waitTimeout) {
-    const commandArguments = ["-v", "error", "-hide_banner", "-print_format", "json", "-show_format", "-show_streams", "-show_chapters", "-i", path];
-    return FFprobeKit.getMediaInformationFromCommandArguments(commandArguments, waitTimeout);
+    const commandArguments = [
+      '-v',
+      'error',
+      '-hide_banner',
+      '-print_format',
+      'json',
+      '-show_format',
+      '-show_streams',
+      '-show_chapters',
+      '-i',
+      path,
+    ];
+    return FFprobeKit.getMediaInformationFromCommandArguments(
+      commandArguments,
+      waitTimeout
+    );
   }
 
   /**
@@ -2111,7 +2328,10 @@ export class FFprobeKit {
    * @return media information session created for this execution
    */
   static async getMediaInformationFromCommand(command, waitTimeout) {
-    return FFprobeKit.getMediaInformationFromCommandArguments(FFmpegKitConfig.parseArguments(command), waitTimeout);
+    return FFprobeKit.getMediaInformationFromCommandArguments(
+      FFmpegKitConfig.parseArguments(command),
+      waitTimeout
+    );
   }
 
   /**
@@ -2123,12 +2343,22 @@ export class FFprobeKit {
    * @param waitTimeout     max time to wait until media information is transmitted
    * @return media information session created for this execution
    */
-  static async getMediaInformationFromCommandArguments(commandArguments, waitTimeout) {
-    let session = await MediaInformationSession.create(commandArguments, undefined, undefined);
+  static async getMediaInformationFromCommandArguments(
+    commandArguments,
+    waitTimeout
+  ) {
+    let session = await MediaInformationSession.create(
+      commandArguments,
+      undefined,
+      undefined
+    );
 
     await FFmpegKitConfig.getMediaInformationExecute(session, waitTimeout);
 
-    const mediaInformation = await FFmpegKitReactNativeModule.getMediaInformation(session.getSessionId());
+    const mediaInformation =
+      await FFmpegKitReactNativeModule.getMediaInformation(
+        session.getSessionId()
+      );
     if (mediaInformation !== undefined && mediaInformation !== null) {
       session.setMediaInformation(new MediaInformation(mediaInformation));
     }
@@ -2148,9 +2378,30 @@ export class FFprobeKit {
    * @param waitTimeout     max time to wait until media information is transmitted
    * @return media information session created for this execution
    */
-  static async getMediaInformationAsync(path, completeCallback, logCallback, waitTimeout) {
-    const commandArguments = ["-v", "error", "-hide_banner", "-print_format", "json", "-show_format", "-show_streams", "-show_chapters", "-i", path];
-    return FFprobeKit.getMediaInformationFromCommandArgumentsAsync(commandArguments, completeCallback, logCallback, waitTimeout);
+  static async getMediaInformationAsync(
+    path,
+    completeCallback,
+    logCallback,
+    waitTimeout
+  ) {
+    const commandArguments = [
+      '-v',
+      'error',
+      '-hide_banner',
+      '-print_format',
+      'json',
+      '-show_format',
+      '-show_streams',
+      '-show_chapters',
+      '-i',
+      path,
+    ];
+    return FFprobeKit.getMediaInformationFromCommandArgumentsAsync(
+      commandArguments,
+      completeCallback,
+      logCallback,
+      waitTimeout
+    );
   }
 
   /**
@@ -2166,8 +2417,18 @@ export class FFprobeKit {
    * @param waitTimeout     max time to wait until media information is transmitted
    * @return media information session created for this execution
    */
-  static async getMediaInformationFromCommandAsync(command, completeCallback, logCallback, waitTimeout) {
-    return FFprobeKit.getMediaInformationFromCommandArgumentsAsync(FFmpegKitConfig.parseArguments(command), completeCallback, logCallback, waitTimeout);
+  static async getMediaInformationFromCommandAsync(
+    command,
+    completeCallback,
+    logCallback,
+    waitTimeout
+  ) {
+    return FFprobeKit.getMediaInformationFromCommandArgumentsAsync(
+      FFmpegKitConfig.parseArguments(command),
+      completeCallback,
+      logCallback,
+      waitTimeout
+    );
   }
 
   /**
@@ -2184,12 +2445,24 @@ export class FFprobeKit {
    * @param waitTimeout     max time to wait until media information is transmitted
    * @return media information session created for this execution
    */
-  static async getMediaInformationFromCommandArgumentsAsync(commandArguments, completeCallback, logCallback, waitTimeout) {
-    let session = await MediaInformationSession.create(commandArguments, completeCallback, logCallback);
+  static async getMediaInformationFromCommandArgumentsAsync(
+    commandArguments,
+    completeCallback,
+    logCallback,
+    waitTimeout
+  ) {
+    let session = await MediaInformationSession.create(
+      commandArguments,
+      completeCallback,
+      logCallback
+    );
 
     await FFmpegKitConfig.asyncGetMediaInformationExecute(session, waitTimeout);
 
-    const mediaInformation = await FFmpegKitReactNativeModule.getMediaInformation(session.getSessionId());
+    const mediaInformation =
+      await FFmpegKitReactNativeModule.getMediaInformation(
+        session.getSessionId()
+      );
     if (mediaInformation !== undefined && mediaInformation !== null) {
       session.setMediaInformation(new MediaInformation(mediaInformation));
     }
@@ -2217,17 +2490,16 @@ export class FFprobeKit {
   static async listMediaInformationSessions() {
     await FFmpegKitConfig.init();
 
-    const sessionArray = await FFmpegKitReactNativeModule.getMediaInformationSessions();
+    const sessionArray =
+      await FFmpegKitReactNativeModule.getMediaInformationSessions();
     return sessionArray.map(FFmpegKitFactory.mapToSession);
   }
-
 }
 
 /**
  * <p>An FFprobe session.
  */
 export class FFprobeSession extends AbstractSession {
-
   /**
    * Creates a new FFprobe session.
    *
@@ -2237,11 +2509,22 @@ export class FFprobeSession extends AbstractSession {
    * @param logRedirectionStrategy defines how logs will be redirected
    * @returns FFprobe session created
    */
-  static async create(argumentsArray, completeCallback, logCallback, logRedirectionStrategy) {
-    const session = await AbstractSession.createFFprobeSession(argumentsArray, logRedirectionStrategy);
+  static async create(
+    argumentsArray,
+    completeCallback,
+    logCallback,
+    logRedirectionStrategy
+  ) {
+    const session = await AbstractSession.createFFprobeSession(
+      argumentsArray,
+      logRedirectionStrategy
+    );
     const sessionId = session.getSessionId();
 
-    FFmpegKitFactory.setFFprobeSessionCompleteCallback(sessionId, completeCallback);
+    FFmpegKitFactory.setFFprobeSessionCompleteCallback(
+      sessionId,
+      completeCallback
+    );
     FFmpegKitFactory.setLogCallback(sessionId, logCallback);
 
     return session;
@@ -2253,7 +2536,9 @@ export class FFprobeSession extends AbstractSession {
    * @return session specific complete callback
    */
   getCompleteCallback() {
-    return FFmpegKitFactory.getFFprobeSessionCompleteCallback(this.getSessionId());
+    return FFmpegKitFactory.getFFprobeSessionCompleteCallback(
+      this.getSessionId()
+    );
   }
 
   isFFmpeg() {
@@ -2267,14 +2552,12 @@ export class FFprobeSession extends AbstractSession {
   isMediaInformation() {
     return false;
   }
-
 }
 
 /**
  * <p>Defines log levels.
  */
 export class Level {
-
   /**
    * This log level is used to specify logs printed to stderr by ffmpeg.
    * Logs that has this level are not filtered and always redirected.
@@ -2339,29 +2622,28 @@ export class Level {
   static levelToString(level) {
     switch (level) {
       case Level.AV_LOG_TRACE:
-        return "TRACE";
+        return 'TRACE';
       case Level.AV_LOG_DEBUG:
-        return "DEBUG";
+        return 'DEBUG';
       case Level.AV_LOG_VERBOSE:
-        return "VERBOSE";
+        return 'VERBOSE';
       case Level.AV_LOG_INFO:
-        return "INFO";
+        return 'INFO';
       case Level.AV_LOG_WARNING:
-        return "WARNING";
+        return 'WARNING';
       case Level.AV_LOG_ERROR:
-        return "ERROR";
+        return 'ERROR';
       case Level.AV_LOG_FATAL:
-        return "FATAL";
+        return 'FATAL';
       case Level.AV_LOG_PANIC:
-        return "PANIC";
+        return 'PANIC';
       case Level.AV_LOG_STDERR:
-        return "STDERR";
+        return 'STDERR';
       case Level.AV_LOG_QUIET:
       default:
-        return "";
+        return '';
     }
   }
-
 }
 
 /**
@@ -2389,23 +2671,21 @@ export class Log {
   getMessage() {
     return this.#message;
   }
-
 }
 
 /**
  * Media information class.
  */
 export class MediaInformation {
-
-  static KEY_FORMAT_PROPERTIES = "format";
-  static KEY_FILENAME = "filename";
-  static KEY_FORMAT = "format_name";
-  static KEY_FORMAT_LONG = "format_long_name";
-  static KEY_START_TIME = "start_time";
-  static KEY_DURATION = "duration";
-  static KEY_SIZE = "size";
-  static KEY_BIT_RATE = "bit_rate";
-  static KEY_TAGS = "tags";
+  static KEY_FORMAT_PROPERTIES = 'format';
+  static KEY_FILENAME = 'filename';
+  static KEY_FORMAT = 'format_name';
+  static KEY_FORMAT_LONG = 'format_long_name';
+  static KEY_START_TIME = 'start_time';
+  static KEY_DURATION = 'duration';
+  static KEY_SIZE = 'size';
+  static KEY_BIT_RATE = 'bit_rate';
+  static KEY_TAGS = 'tags';
 
   #allProperties;
 
@@ -2646,7 +2926,6 @@ export class MediaInformation {
  * A parser that constructs {@link MediaInformation} from FFprobe's json output.
  */
 export class MediaInformationJsonParser {
-
   /**
    * Extracts <code>MediaInformation</code> from the given FFprobe json output. Note that this
    * method does not fail as {@link #fromWithError(String)} does and returns undefined on error.
@@ -2657,7 +2936,9 @@ export class MediaInformationJsonParser {
   static async from(ffprobeJsonOutput) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.mediaInformationJsonParserFrom(ffprobeJsonOutput).map(properties => new MediaInformation(properties));
+    return FFmpegKitReactNativeModule.mediaInformationJsonParserFrom(
+      ffprobeJsonOutput
+    ).map((properties) => new MediaInformation(properties));
   }
 
   /**
@@ -2669,9 +2950,10 @@ export class MediaInformationJsonParser {
   static async fromWithError(ffprobeJsonOutput) {
     await FFmpegKitConfig.init();
 
-    return FFmpegKitReactNativeModule.mediaInformationJsonParserFrom(ffprobeJsonOutput).map(properties => new MediaInformation(properties));
+    return FFmpegKitReactNativeModule.mediaInformationJsonParserFrom(
+      ffprobeJsonOutput
+    ).map((properties) => new MediaInformation(properties));
   }
-
 }
 
 /**
@@ -2690,10 +2972,14 @@ export class MediaInformationSession extends AbstractSession {
    * @returns MediaInformationSession session created
    */
   static async create(argumentsArray, completeCallback, logCallback) {
-    const session = await AbstractSession.createMediaInformationSession(argumentsArray);
+    const session =
+      await AbstractSession.createMediaInformationSession(argumentsArray);
     const sessionId = session.getSessionId();
 
-    FFmpegKitFactory.setMediaInformationSessionCompleteCallback(sessionId, completeCallback);
+    FFmpegKitFactory.setMediaInformationSessionCompleteCallback(
+      sessionId,
+      completeCallback
+    );
     FFmpegKitFactory.setLogCallback(sessionId, logCallback);
 
     return session;
@@ -2724,7 +3010,9 @@ export class MediaInformationSession extends AbstractSession {
    * @return session specific complete callback
    */
   getCompleteCallback() {
-    return FFmpegKitFactory.getMediaInformationSessionCompleteCallback(this.getSessionId());
+    return FFmpegKitFactory.getMediaInformationSessionCompleteCallback(
+      this.getSessionId()
+    );
   }
 
   isFFmpeg() {
@@ -2738,14 +3026,12 @@ export class MediaInformationSession extends AbstractSession {
   isMediaInformation() {
     return true;
   }
-
 }
 
 /**
  * <p>Helper class to extract binary package information.
  */
 export class Packages {
-
   /**
    * Returns the FFmpegKit ReactNative binary package name.
    *
@@ -2767,11 +3053,9 @@ export class Packages {
 
     return FFmpegKitReactNativeModule.getExternalLibraries();
   }
-
 }
 
 export class ReturnCode {
-
   static SUCCESS = 0;
 
   static CANCEL = 255;
@@ -2783,11 +3067,15 @@ export class ReturnCode {
   }
 
   static isSuccess(returnCode) {
-    return (returnCode !== undefined && returnCode.getValue() === ReturnCode.SUCCESS);
+    return (
+      returnCode !== undefined && returnCode.getValue() === ReturnCode.SUCCESS
+    );
   }
 
   static isCancel(returnCode) {
-    return (returnCode !== undefined && returnCode.getValue() === ReturnCode.CANCEL);
+    return (
+      returnCode !== undefined && returnCode.getValue() === ReturnCode.CANCEL
+    );
   }
 
   getValue() {
@@ -2795,21 +3083,22 @@ export class ReturnCode {
   }
 
   isValueSuccess() {
-    return (this.#value === ReturnCode.SUCCESS);
+    return this.#value === ReturnCode.SUCCESS;
   }
 
   isValueError() {
-    return ((this.#value !== ReturnCode.SUCCESS) && (this.#value !== ReturnCode.CANCEL));
+    return (
+      this.#value !== ReturnCode.SUCCESS && this.#value !== ReturnCode.CANCEL
+    );
   }
 
   isValueCancel() {
-    return (this.#value === ReturnCode.CANCEL);
+    return this.#value === ReturnCode.CANCEL;
   }
 
   toString() {
     return this.#value;
   }
-
 }
 
 /**
@@ -2825,7 +3114,16 @@ export class Statistics {
   #bitrate;
   #speed;
 
-  constructor(sessionId, videoFrameNumber, videoFps, videoQuality, size, time, bitrate, speed) {
+  constructor(
+    sessionId,
+    videoFrameNumber,
+    videoFps,
+    videoQuality,
+    size,
+    time,
+    bitrate,
+    speed
+  ) {
     this.#sessionId = sessionId;
     this.#videoFrameNumber = videoFrameNumber;
     this.#videoFps = videoFps;
@@ -2899,32 +3197,30 @@ export class Statistics {
   setSpeed(speed) {
     this.#speed = speed;
   }
-
 }
 
 /**
  * Stream information class.
  */
 export class StreamInformation {
-
-  static KEY_INDEX = "index";
-  static KEY_TYPE = "codec_type";
-  static KEY_CODEC = "codec_name";
-  static KEY_CODEC_LONG = "codec_long_name";
-  static KEY_FORMAT = "pix_fmt";
-  static KEY_WIDTH = "width";
-  static KEY_HEIGHT = "height";
-  static KEY_BIT_RATE = "bit_rate";
-  static KEY_SAMPLE_RATE = "sample_rate";
-  static KEY_SAMPLE_FORMAT = "sample_fmt";
-  static KEY_CHANNEL_LAYOUT = "channel_layout";
-  static KEY_SAMPLE_ASPECT_RATIO = "sample_aspect_ratio";
-  static KEY_DISPLAY_ASPECT_RATIO = "display_aspect_ratio";
-  static KEY_AVERAGE_FRAME_RATE = "avg_frame_rate";
-  static KEY_REAL_FRAME_RATE = "r_frame_rate";
-  static KEY_TIME_BASE = "time_base";
-  static KEY_CODEC_TIME_BASE = "codec_time_base";
-  static KEY_TAGS = "tags";
+  static KEY_INDEX = 'index';
+  static KEY_TYPE = 'codec_type';
+  static KEY_CODEC = 'codec_name';
+  static KEY_CODEC_LONG = 'codec_long_name';
+  static KEY_FORMAT = 'pix_fmt';
+  static KEY_WIDTH = 'width';
+  static KEY_HEIGHT = 'height';
+  static KEY_BIT_RATE = 'bit_rate';
+  static KEY_SAMPLE_RATE = 'sample_rate';
+  static KEY_SAMPLE_FORMAT = 'sample_fmt';
+  static KEY_CHANNEL_LAYOUT = 'channel_layout';
+  static KEY_SAMPLE_ASPECT_RATIO = 'sample_aspect_ratio';
+  static KEY_DISPLAY_ASPECT_RATIO = 'display_aspect_ratio';
+  static KEY_AVERAGE_FRAME_RATE = 'avg_frame_rate';
+  static KEY_REAL_FRAME_RATE = 'r_frame_rate';
+  static KEY_TIME_BASE = 'time_base';
+  static KEY_CODEC_TIME_BASE = 'codec_time_base';
+  static KEY_TAGS = 'tags';
 
   #allProperties;
 
@@ -3150,14 +3446,13 @@ export class StreamInformation {
  * Chapter class.
  */
 export class Chapter {
-
-  static KEY_ID = "id";
-  static KEY_TIME_BASE = "time_base";
-  static KEY_START = "start";
-  static KEY_START_TIME = "start_time";
-  static KEY_END = "end";
-  static KEY_END_TIME = "end_time";
-  static KEY_TAGS = "tags";
+  static KEY_ID = 'id';
+  static KEY_TIME_BASE = 'time_base';
+  static KEY_START = 'start';
+  static KEY_START_TIME = 'start_time';
+  static KEY_END = 'end';
+  static KEY_END_TIME = 'end_time';
+  static KEY_TAGS = 'tags';
 
   #allProperties;
 
