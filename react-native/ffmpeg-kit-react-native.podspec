@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
   s.subspec 'min' do |ss|
       ss.source_files      = '**/FFmpegKitReactNativeModule.m',
                              '**/FFmpegKitReactNativeModule.h'
-      ss.dependency 'ffmpeg-kit-ios-min', "6.0"
+      ss.dependency 'ffmpeg-kit-ios-min', "6.1"
       ss.ios.deployment_target = '12.1'
   end
 
@@ -37,7 +37,7 @@ Pod::Spec.new do |s|
   s.subspec 'min-gpl' do |ss|
       ss.source_files      = '**/FFmpegKitReactNativeModule.m',
                              '**/FFmpegKitReactNativeModule.h'
-      ss.dependency 'ffmpeg-kit-ios-min-gpl', "6.0"
+      ss.dependency 'ffmpeg-kit-ios-min-gpl', "6.1"
       ss.ios.deployment_target = '12.1'
   end
 
@@ -51,7 +51,7 @@ Pod::Spec.new do |s|
   s.subspec 'https' do |ss|
       ss.source_files      = '**/FFmpegKitReactNativeModule.m',
                              '**/FFmpegKitReactNativeModule.h'
-      ss.dependency 'ffmpeg-kit-ios-https', "6.0"
+      ss.dependency 'ffmpeg-kit-ios-https', "6.1"
       ss.ios.deployment_target = '12.1'
   end
 
@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
   s.subspec 'https-gpl' do |ss|
       ss.source_files      = '**/FFmpegKitReactNativeModule.m',
                              '**/FFmpegKitReactNativeModule.h'
-      ss.dependency 'ffmpeg-kit-ios-https-gpl', "6.0"
+      ss.dependency 'ffmpeg-kit-ios-https-gpl', "6.1"
       ss.ios.deployment_target = '12.1'
   end
 
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   s.subspec 'audio' do |ss|
       ss.source_files      = '**/FFmpegKitReactNativeModule.m',
                              '**/FFmpegKitReactNativeModule.h'
-      ss.dependency 'ffmpeg-kit-ios-audio', "6.0"
+      ss.dependency 'ffmpeg-kit-ios-audio', "6.1"
       ss.ios.deployment_target = '12.1'
   end
 
@@ -93,7 +93,7 @@ Pod::Spec.new do |s|
   s.subspec 'video' do |ss|
       ss.source_files      = '**/FFmpegKitReactNativeModule.m',
                              '**/FFmpegKitReactNativeModule.h'
-      ss.dependency 'ffmpeg-kit-ios-video', "6.0"
+      ss.dependency 'ffmpeg-kit-ios-video', "6.1"
       ss.ios.deployment_target = '12.1'
   end
 
@@ -107,7 +107,7 @@ Pod::Spec.new do |s|
   s.subspec 'full' do |ss|
       ss.source_files      = '**/FFmpegKitReactNativeModule.m',
                              '**/FFmpegKitReactNativeModule.h'
-      ss.dependency 'ffmpeg-kit-ios-full', "6.0"
+      ss.dependency 'ffmpeg-kit-ios-full', "6.1"
       ss.ios.deployment_target = '12.1'
   end
 
@@ -121,7 +121,7 @@ Pod::Spec.new do |s|
   s.subspec 'full-gpl' do |ss|
       ss.source_files      = '**/FFmpegKitReactNativeModule.m',
                              '**/FFmpegKitReactNativeModule.h'
-      ss.dependency 'ffmpeg-kit-ios-full-gpl', "6.0"
+      ss.dependency 'ffmpeg-kit-ios-full-gpl', "6.1"
       ss.ios.deployment_target = '12.1'
   end
 
